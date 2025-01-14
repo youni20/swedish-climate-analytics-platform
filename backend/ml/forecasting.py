@@ -42,6 +42,23 @@ class SARIMAForecaster:
     def predict(self, steps=30) -> pd.Series:
         return self.results.forecast(steps=steps)
 
+class LSTMForecaster:
+    """
+    Placeholder for LSTM forecasting. 
+    Requires TensorFlow/Keras which we might tackle later or keep simple.
+    """
+    def __init__(self):
+        self.model = None
+
+    def fit(self, df: pd.DataFrame, target_col='temperature'):
+        # Placeholder for LSTM training logic
+        pass
+
+    def predict(self, steps=30):
+        # Placeholder for prediction
+        # Return dummy data for now or implement simple logic
+        return pd.Series(np.zeros(steps))
+
 class ForecastEnsemble:
     """
     Combines predictions from multiple models.
