@@ -16,7 +16,7 @@ class AnomalyDetector:
         X_scaled = self.scaler.fit_transform(X)
 
         if self.model_type == 'isolation_forest':
-            self.model = IsolationForest(contamination=0.05, random_state=42)
+            self.model = IsolationForest(contamination=0.04, random_state=42)
             # Returns -1 for anomaly, 1 for normal
             preds = self.model.fit_predict(X_scaled)
         
