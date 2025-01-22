@@ -6,6 +6,11 @@ BACKEND_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BACKEND_DIR.parent
 DATASETS_DIR = PROJECT_DIR / "datasets"
 
+PROJECT_NAME = "Swedish Environmental Analytics Platform"
+API_V1_STR = "/api/v1"
+
+
+
 # Dataset Paths
 RAW_DATA_PATH = DATASETS_DIR / "swedish_cities_environmental.csv"
 WEEKLY_DATA_PATH = DATASETS_DIR / "swedish cities environmental_week.csv"
