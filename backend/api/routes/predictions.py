@@ -18,6 +18,9 @@ except:
 
 @router.get("/{city}/forecast", response_model=ForecastResponse)
 def get_forecast(city: str, days: int = 30):
+    """
+    Generate future forecasts for a specific city using trained models.
+    """
     if df.empty:
          raise HTTPException(status_code=503, detail="Data unavailable")
          
