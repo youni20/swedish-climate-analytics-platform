@@ -30,4 +30,7 @@ app.include_router(analytics.router, prefix="/api/analytics", tags=["analytics"]
 
 @app.get("/health")
 def health_check():
+    """
+    Health check endpoint to verify backend status.
+    """
     return {"status": "healthy"}
