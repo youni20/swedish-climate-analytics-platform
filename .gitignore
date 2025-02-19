@@ -43,3 +43,4 @@ data/processed/
 
 # Project specific
 backend/models/trained_models/
+*.log
