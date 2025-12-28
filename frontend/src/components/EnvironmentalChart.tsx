@@ -24,29 +24,45 @@ const EnvironmentalChart = ({ city }: { city: string }) => {
     return (
         <div className="w-full h-[400px] bg-card rounded-lg border p-4 shadow-sm">
             <h3 className="font-semibold mb-4">Temperature Forecast (30 Days): {city}</h3>
-            <div className="w-full h-[300px]">
+            <div className="w-full h-[300px] min-h-[300px]">
                 {data.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={data}>
-                            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                            <XAxis dataKey="date" hide />
-                            <YAxis />
+                        <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <CartesianGrid strokeDasharray="3 3" opacity={0.2} vertical={false} />
+                            <XAxis
+                                dataKey="date"
+                                tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }}
+                                minTickGap={30}
+                            />
+                            <YAxis
+                                unit="°C"
+                                width={40}
+                                tick={{ fontSize: 12, fill: 'var(--muted-foreground)' }}
+                            />
                             <Tooltip
-                                contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)' }}
-                                itemStyle={{ color: 'var(--foreground)' }}
+                                contentStyle={{
+                                    backgroundColor: 'hsl(var(--card))',
+                                    borderColor: 'hsl(var(--border))',
+                                    borderRadius: '0.5rem'
+                                }}
+                                itemStyle={{ color: 'hsl(var(--foreground))' }}
+                                labelStyle={{ color: 'hsl(var(--muted-foreground))' }}
                             />
                             <Line
                                 type="monotone"
                                 dataKey="temp"
+                                name="Temperature"
                                 stroke="hsl(var(--primary))"
                                 strokeWidth={2}
-                                dot={false}
+                                dot={{ fill: 'hsl(var(--primary))', r: 2 }}
+                                activeDot={{ r: 6 }}
                             />
                         </LineChart>
                     </ResponsiveContainer>
                 ) : (
-                    <div className="flex items-center justify-center h-full text-muted-foreground">
-                        Loading forecast data...
+                    <div className="flex flex-col items-center justify-center h-full text-muted-foreground animate-pulse">
+                        <p>Loading Forecast...</p>
+                        <span className="text-xs mt-2 opacity-70">Model is calculating projections (Prophet)</span>
                     </div>
                 )}
             </div>

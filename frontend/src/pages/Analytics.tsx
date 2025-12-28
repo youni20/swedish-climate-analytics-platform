@@ -74,22 +74,45 @@ const Analytics = () => {
                     </p>
                 </div>
 
-                <div className="bg-card p-6 rounded-lg border shadow-sm">
                     <h2 className="text-xl font-semibold mb-4">Correlation Matrix</h2>
-                    <div className="h-[300px] w-full flex items-center justify-center bg-muted/10 rounded">
+                    <div className="w-full flex items-center justify-center bg-card rounded overflow-hidden">
                         {correlations.length > 0 ? (
-                            <div className="grid grid-cols-4 gap-2 text-center text-sm w-full p-4">
-                                {correlations.map((item, i) => (
-                                    <div key={i} className="flex flex-col p-2 rounded bg-background border" style={{
-                                        opacity: Math.abs(item.value) // primitive visualization of correlation strength
-                                    }}>
-                                        <span className="text-xs text-muted-foreground">{item.x.substring(0, 3)}-{item.y.substring(0, 3)}</span>
-                                        <span className="font-bold">{item.value}</span>
-                                    </div>
+                            <div className="grid grid-cols-5 gap-1 text-xs w-full">
+                                {/* Header Row */}
+                                <div className="p-2"></div>
+                                {['Temp', 'Humid', 'Press', 'Wind'].map(h => (
+                                    <div key={h} className="font-bold flex items-center justify-center p-2 bg-muted">{h}</div>
+                                ))}
+                                
+                                {/* Data Rows */}
+                                {['temperature', 'humidity', 'pressure', 'wind_speed'].map((rowKey) => (
+                                    <React.Fragment key={rowKey}>
+                                        <div className="font-bold flex items-center p-2 bg-muted capitalize">
+                                            {rowKey.replace('temperature', 'Temp').replace('humidity', 'Humid').replace('pressure', 'Press').replace('wind_speed', 'Wind')}
+                                        </div>
+                                        {['temperature', 'humidity', 'pressure', 'wind_speed'].map((colKey) => {
+                                            const item = correlations.find(c => c.x === rowKey && c.y === colKey);
+                                            const val = item ? item.value : 0;
+                                            // Color scale: Red (pos), Blue (neg)
+                                            const bg = val > 0 
+                                                ? `rgba(220, 38, 38, ${Math.abs(val)})` 
+                                                : `rgba(37, 99, 235, ${Math.abs(val)})`;
+                                            const color = Math.abs(val) > 0.5 ? 'white' : 'black';
+                                            
+                                            return (
+                                                <div key={`${rowKey}-${colKey}`} 
+                                                    className="flex items-center justify-center p-4 font-mono rounded"
+                                                    style={{ backgroundColor: bg, color }}
+                                                >
+                                                    {val.toFixed(2)}
+                                                </div>
+                                            );
+                                        })}
+                                    </React.Fragment>
                                 ))}
                             </div>
                         ) : (
-                            <div className="text-muted-foreground">Loading correlations...</div>
+                            <div className="text-muted-foreground p-8">Loading correlations...</div>
                         )}
                     </div>
                 </div>
@@ -99,7 +122,7 @@ const Analytics = () => {
                 <h2 className="text-xl font-semibold mb-4">Seasonal Decomposition</h2>
                 <EnvironmentalChart city="Stockholm" />
             </div>
-        </Layout>
+        </Layout >
     );
 };
 

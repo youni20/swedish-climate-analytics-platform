@@ -38,8 +38,14 @@ def get_forecast(city: str, days: int = 30):
     
     # Format response
     forecast_points = []
-    # Take only the future part
-    future_preds = preds.tail(days)
+    
+    last_date = city_data['timestamp'].max()
+    future_preds = preds[preds['ds'] > last_date]
+    
+    # If for some reason future_preds is empty (shouldn't be with make_future_dataframe), fallback to tail
+    if future_preds.empty:
+        future_preds = preds.tail(days)
+        
     for _, row in future_preds.iterrows():
         forecast_points.append(ForecastPoint(
             date=row['ds'],
