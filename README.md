@@ -2,7 +2,7 @@
 
 A production-ready, full-stack machine learning platform that analyzes environmental data across Swedish cities, providing interactive visualizations, predictive analytics, and actionable insights.
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Dashboard+Preview)
+![Dashboard Preview](images/dashboard.png)
 
 ## 🌟 Features
 
@@ -20,6 +20,9 @@ A production-ready, full-stack machine learning platform that analyzes environme
     *   **Backend**: FastAPI, Python 3.13, Pandas, Scikit-learn, Prophet.
     *   **Frontend**: React 18, TypeScript, Tailwind CSS, Vite.
     *   **Infrastructure**: Docker, Docker Compose, Redis caching, GitHub Actions CI/CD.
+
+![Analytics Preview](images/analytics.png)
+
 
 ## 🚀 Getting Started
 
