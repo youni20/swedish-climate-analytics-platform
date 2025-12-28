@@ -13,8 +13,8 @@ const EnvironmentalChart = ({ city }: { city: string }) => {
             // Real API response: { forecast: [{ ds: "date", yhat: value }, ...] } presumably from Prophet
             if (forecast && forecast.forecast) {
                 setData(forecast.forecast.map((item: any) => ({
-                    date: new Date(item.ds).toLocaleDateString(),
-                    temp: item.yhat
+                    date: new Date(item.date).toLocaleDateString(),
+                    temp: item.predicted_value
                 })).slice(0, 30)); // Show 30 points
             }
         };
