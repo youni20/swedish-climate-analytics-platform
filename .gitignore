@@ -44,3 +44,6 @@ data/processed/
 # Project specific
 backend/models/trained_models/
 *.log
+
+# Frontend
+frontend/node_modules/
