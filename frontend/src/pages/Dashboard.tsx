@@ -42,7 +42,7 @@ const Dashboard = () => {
 
             <div className="mt-8 grid gap-6 lg:grid-cols-3">
                 <div className="lg:col-span-2">
-                    <Map />
+                    <Map cities={cities.map(name => ({ name }))} selectedCity={selectedCity} />
                 </div>
                 <div>
                     <div className="bg-card p-4 rounded-lg border">
