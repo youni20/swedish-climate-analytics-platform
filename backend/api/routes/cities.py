@@ -16,7 +16,7 @@ try:
 except Exception:
     df = pd.DataFrame() # Fallback
 
-@router.get("/", response_model=List[City])
+@router.get("", response_model=List[City])
 def get_cities():
     if df.empty:
         return []
