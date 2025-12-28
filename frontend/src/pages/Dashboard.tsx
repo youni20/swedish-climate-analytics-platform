@@ -12,15 +12,15 @@ const Dashboard = () => {
         const loadCities = async () => {
             const data = await fetchCities();
             if (data && data.length > 0) {
-                setCities(data.map((c: any) => c.city));
+                setCities(data.map((c) => c.name));
                 // If current selected city is not in list, pick first
-                if (!data.find((c: any) => c.city === selectedCity)) {
-                    setSelectedCity(data[0].city);
+                if (!data.find((c) => c.name === selectedCity)) {
+                    setSelectedCity(data[0].name);
                 }
             }
         };
         loadCities();
-    }, []);
+    }, [selectedCity]);
 
     return (
         <Layout>
