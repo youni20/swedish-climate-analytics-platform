@@ -27,7 +27,11 @@ A production-ready, full-stack machine learning platform that analyzes environme
 
 *   **Docker** and **Docker Compose**
 *   **Node.js 18+** (for local frontend dev)
-*   **Python 3.10+** (for local backend dev)
+### 📊 Data Source
+
+This project uses the **Sweden Cities Environmental Data** dataset.
+*   **Source**: [Kaggle - Sweden Cities Environmental Data](https://www.kaggle.com/datasets/orvile/sweden-cities-environmental-data)
+*   **License**: CC0: Public Domain
 
 ### 🐳 Quick Start (Docker)
 
